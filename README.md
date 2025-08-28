@@ -1,16 +1,15 @@
-# CLX Transcript Service (v3)
+# CLX Transcript Service (v5)
 
-- Robust YouTube ID parsing (watch / youtu.be / shorts / embed)
-- Health endpoint at `/`
-- Better transcript retrieval using `list_transcripts()`
-- Pinned youtube-transcript-api==0.6.2
+- Tries YouTube captions first (manual/auto, preferred languages)
+- Optional STT fallback (OpenAI Whisper or AssemblyAI) when captions are unavailable
+- Endpoints:
+  - `/` health
+  - `/transcript?url=...&languages=en,fil&fallback_stt=true`
+  - `/auto_transcript?url=...&languages=en` (auto captions→STT)
+
+## Env vars (for STT)
+- `OPENAI_API_KEY` (for Whisper) or `ASSEMBLYAI_API_KEY`
 
 ## Run locally
-```
 pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000
-```
-
-## Endpoints
-- `/` -> health check
-- `/transcript?url=VIDEO_URL&languages=en,fil` -> returns transcript JSON (if captions exist)
