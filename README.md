@@ -1,6 +1,6 @@
-# CLX Transcript Service
+# CLX Transcript Service (v2)
 
-A simple FastAPI service that fetches YouTube video transcripts and returns them as plain text.
+Improved URL parsing and a health endpoint.
 
 ## Run locally
 
@@ -9,7 +9,6 @@ pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
-## Endpoint
-
-- `/transcript?url=VIDEO_URL`
-  - Returns transcript text if available
+## Endpoints
+- `/` -> health check
+- `/transcript?url=VIDEO_URL` -> returns transcript JSON (if captions exist)
